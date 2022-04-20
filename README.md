@@ -9,11 +9,11 @@
 
 ## Start time: _5:00 P.M.___
 
-## Finish time: _____
+## Finish time: __8:27p.m.___
 
-## Actual time needed to complete: __hrs___
+## Actual time needed to complete: __3.5hrs___
 
-
+Data flow: ![Dataflow Chart](/src/images/Flowchart.jpg)
 
 # City Explorer
 
