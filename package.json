@@ -1,0 +1,25 @@
+{
+  "name": "city-explorer-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mScottEvans/city-explorer-api.git"
+  },
+  "author": "Micheal Scott Evans",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mScottEvans/city-explorer-api/issues"
+  },
+  "homepage": "https://github.com/mScottEvans/city-explorer-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
+  }
+}
