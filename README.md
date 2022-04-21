@@ -1,33 +1,32 @@
 # city-explorer-api
 
 # By: Scott Evans
-
+<!-- *******Lab-06***** -->
 ## Number and name of feature: Lab06- Asynchronous code, and APIs
-
-
 ## Estimate of time needed to complete: __4hrs___
-
 ## Start time: _5:00 P.M.___
-
 ## Finish time: __8:27p.m.___
-
 ## Actual time needed to complete: __3.5hrs___
 
+<!-- ********LAB-07********** -->
 ## Number and name of feature: Lab07- Custom Servers with Node and Express
-
-
 ## Estimate of time needed to complete: __4hrs___
-
 ## Start time: _5:23 P.M.___
-
 ## Finish time: __8:40p.m.___
-
 ## Actual time needed to complete: __4hrs___
 
- Data flow: ![Dataflow Chart](/src/imgs/ScottAnthonyLab06.jpg)
- Data flow: ![Dataflow Chart](/src/imgs/FlowChartLab07.jpg)
- Data flow: ![Dataflow Chart](/src/imgs/FlowChartLab08.jpg)
+<!-- ***************Flow Charts****************** -->
+  
+## Number and name of feature: Lab08- APIs
+## Estimate of time needed to complete: __4hrs___
+## Start time: _8:30 P.M.___
+## Finish time: __8:40p.m.___
+## Actual time needed to complete: __4hrs___
 
+<!-- **********Flow Charts************ -->
+Data flow: ![Dataflow Chart](/src/imgs/ScottAnthonyLab06.jpg)
+Data flow: ![Dataflow Chart](/src/imgs/FlowChartLab07.jpg)
+Data flow: ![Dataflow Chart](/src/imgs/FlowChartLab08.jpg)
 
 # City Explorer
 
