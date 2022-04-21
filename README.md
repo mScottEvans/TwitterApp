@@ -13,7 +13,20 @@
 
 ## Actual time needed to complete: __3.5hrs___
 
-Data flow: ![Dataflow Chart](/src/images/Flowchart.jpg)
+## Number and name of feature: Lab07- Custom Servers with Node and Express
+
+
+## Estimate of time needed to complete: __4hrs___
+
+## Start time: _5:23 P.M.___
+
+## Finish time: __8:40p.m.___
+
+## Actual time needed to complete: __4hrs___
+
+ Data flow: ![Dataflow Chart](/src/imgs/ScottAnthonyLab06.jpg)
+ Data flow: ![Dataflow Chart](/src/imgs/FlowChartLab07.jpg)
+ Data flow: ![Dataflow Chart](/src/imgs/FlowChartLab08.jpg)
 
 
 # City Explorer
