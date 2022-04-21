@@ -2,8 +2,7 @@
 
 console.log('My very first server');
 
-const { request } = require('express');
-const { response } = require('express');
+
 // *********REQUIRES
 // In our servers, we have to 'require' instead of import.
 // Here we will list the requirement for a server
@@ -11,7 +10,10 @@ const express = require('express');
 require('dotenv').config();
 
 let data = require("./data/weather.json");
+// To share resources over the web
 const cors = require('cors');
+
+const axios = require('axios');
 
 // we musts include cors if we want to share resources over the web
 
@@ -23,6 +25,7 @@ const cors = require('cors');
 // React does this in one step with 'import', it says we must use it and it assign to a variable. Express takes 2 steps, require and use.
 // this is just how Express works
 const app = express();
+app.use(cors());
 
 
 
@@ -41,11 +44,12 @@ const PORT = process.env.PORT;
 //   response.send('Hello, from our server');
 // })
 
-app.get('/weather', (request, response, next) => {
+app.get('/weather',  (request, response, next) => {
   try {
     let cityName = request.query.searchQuery;
     let cityObj = data.find(weather => weather.city_name.toLowerCase() === cityName.toLowerCase());
     // console.log(cityObj.data)
+    
     let forecastArr = cityObj.data.map(day => new Forecast(day))
     // let selectedCity = new Forecast(cityObj);
     response.send(forecastArr);
@@ -60,7 +64,7 @@ app.get('/weather', (request, response, next) => {
 // at the bottom of all our routes:
 app.get('*', (request, response) => {
   response.send('Not sure what you are looking for, but it isn\'t here.');
-})
+});
 
 
 // *********ERRORS
