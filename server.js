@@ -5,52 +5,38 @@ console.log('My very first server');
 
 // *********REQUIRES
 // In our servers, we have to 'require' instead of import.
-// Here we will list the requirement for a server
 const express = require('express');
 require('dotenv').config();
-
-let data = require("./data/weather.json");
-// To share resources over the web
 const cors = require('cors');
-
 const axios = require('axios');
 
-// we musts include cors if we want to share resources over the web
+
 
 
 
 // ***********USE
 // Once we have required something, we we have to use it.
-// This is where we assign the required file a variable
-// React does this in one step with 'import', it says we must use it and it assign to a variable. Express takes 2 steps, require and use.
-// this is just how Express works
 const app = express();
 app.use(cors());
 
 
 
-// define PORT and validate that my env is working
 const PORT = process.env.PORT;
 
 
-// I know something is wrong with my env or how I'm importing it if my server is running on 3002
+
 
 // ***********ROUTES
-// We will use these as our endpoint
-// create a basic default route.
-// app.get correlates to axios.get
-// the firsts parametere is the URL in quotes
-// app.get('/', (request, response) => {
-//   response.send('Hello, from our server');
-// })
-
-app.get('/weather',  (request, response, next) => {
+app.get('/weather', async (request, response, next) => {
   try {
-    let cityName = request.query.searchQuery;
-    let cityObj = data.find(weather => weather.city_name.toLowerCase() === cityName.toLowerCase());
+    let { searchQuery, lat, lon } = request.query;
+    // console.log(request.query);
+    let url = `http://api.weatherbit.io/v2.0/forecast/daily/?key=${process.env.WEATHER_API_KEY}&land=en&lat=${lat}&lon=${lon}&days=5`;
+    let weatherData = await axios.get(url);
+    // console.log(weatherData);
     // console.log(cityObj.data)
     
-    let forecastArr = cityObj.data.map(day => new Forecast(day))
+    let forecastArr = weatherData.data.data.map(day => new Forecast(day));
     // let selectedCity = new Forecast(cityObj);
     response.send(forecastArr);
   } catch(error) {
@@ -59,16 +45,41 @@ app.get('/weather',  (request, response, next) => {
 });
 
 
+// `https://api.themoviedb.org/3/search/movie/?api_key=${process.env.MOVIE_API_KEY}&language=en-US&page=1&query=${searchQuery}`;
 
 
-// at the bottom of all our routes:
-app.get('*', (request, response) => {
-  response.send('Not sure what you are looking for, but it isn\'t here.');
+app.get('/movie', async (request, response, next) => {
+  console.log('In movie handler');
+  try {
+    let {searchQuery} = request.query;
+    // console.log(request.query);
+    let url = `http://localhost:8080/movie?searchQuery=Seattle`
+
+
+    
+    // console.log(url);
+    let movieData = await axios.get(url);
+
+    console.log(movieData);
+    // console.log(cityObj.data)
+    
+    let movieArr = movieData.data.results.map(day => new Theaters(day))
+    // let selectedCity = new Forecast(cityObj);
+    response.send(movieArr);
+  } catch(error) {
+    next(error);
+  }
 });
+
+
 
 
 // *********ERRORS
 // Handle any errors
+app.get('*', (request, response) => {
+  response.send('Not sure what you are looking for, but it isn\'t here.');
+});
+
 app.use((error, request, response, next) => {
   response.status(500).send(error.message);
 });
@@ -81,6 +92,17 @@ class Forecast {
     this.description = cityObject.weather.description;
   }
 }
+ class Theaters {
+   constructor(movieObject) {
+     this.title = movieObject.title;
+     this.overview = movieObject.overview;
+     this.vote_average = movieObject.vote_average;
+     this.vote_count = movieObject.vote_count;
+     this.poster_path = `https://image.tmdb.org/t/p/w500${movieObject.poster_path}`;
+     this.popularity = movieObject.popularity;
+     this.release_date = movieObject.release_date;
+   }
+ }
 
 
 

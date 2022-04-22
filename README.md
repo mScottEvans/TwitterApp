@@ -24,8 +24,9 @@
 ## Actual time needed to complete: __4hrs___
 
 <!-- **********Flow Charts************ -->
-Data flow: ![Dataflow Chart](/src/imgs/ScottAnthonyLab06.jpg)
-Data flow: ![Dataflow Chart](/src/imgs/FlowChartLab07.jpg)
+
+Data flow: ![Dataflow Chart](/src/imgs/FlowChart.jpg)
+
 Data flow: ![Dataflow Chart](/src/imgs/FlowChartLab08.jpg)
 
 # City Explorer
