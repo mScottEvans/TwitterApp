@@ -25,9 +25,11 @@ const PORT = process.env.PORT;
 
 
 
+// http://api.weatherbit.io/v2.0/forecast/daily/?key=aaed730108e2484b9aeb2d8b122ad307&land=en&lat=35.8460396&lon=-86.3921096&days=5
 
 // ***********ROUTES
 app.get('/weather', async (request, response, next) => {
+  // console.log('In Weather handler');
   try {
     let { searchQuery, lat, lon } = request.query;
     // console.log(request.query);
@@ -51,21 +53,21 @@ app.get('/weather', async (request, response, next) => {
 app.get('/movie', async (request, response, next) => {
   console.log('In movie handler');
   try {
-    let {searchQuery} = request.query;
+    console.log(request.query);
+    let query = request.query.query;
     // console.log(request.query);
-    let url = `http://localhost:8080/movie?searchQuery=Seattle`
-
-
-    
-    // console.log(url);
+    let url = `https://api.themoviedb.org/3/search/movie/?api_key=${process.env.MOVIE_API_KEY}&language=en-US&page=1&query=${query}&page=1&include_adult=false`;
+    console.log(url);
     let movieData = await axios.get(url);
-
     console.log(movieData);
+
+
+    let movieArr = movieData.data.results.map(day => new Theaters(day));
+    // console.log(url);
+    // console.log(movieData);
     // console.log(cityObj.data)
-    
-    let movieArr = movieData.data.results.map(day => new Theaters(day))
     // let selectedCity = new Forecast(cityObj);
-    response.send(movieArr);
+    response.status(200).send(movieArr);
   } catch(error) {
     next(error);
   }
@@ -94,11 +96,12 @@ class Forecast {
 }
  class Theaters {
    constructor(movieObject) {
-     this.title = movieObject.title;
+     let url = 'https://image.tmdb.org/t/p/w500';
+     this.original_title = movieObject.original_title;
      this.overview = movieObject.overview;
      this.vote_average = movieObject.vote_average;
      this.vote_count = movieObject.vote_count;
-     this.poster_path = `https://image.tmdb.org/t/p/w500${movieObject.poster_path}`;
+     this.image = url+movieObject.poster_path;
      this.popularity = movieObject.popularity;
      this.release_date = movieObject.release_date;
    }
