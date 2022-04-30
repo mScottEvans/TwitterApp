@@ -38,6 +38,7 @@ app.get('/weather', async (request, response, next) => {
     // console.log(weatherData);
     // console.log(cityObj.data)
     
+    
     let forecastArr = weatherData.data.data.map(day => new Forecast(day));
     // let selectedCity = new Forecast(cityObj);
     response.send(forecastArr);
